@@ -30,7 +30,7 @@ export default class ExerciseList extends Component
 
     componentDidMount()
     {
-        axios.get('http://localhost:5000/exercise/')
+        axios.get('http://localhost:42627/exercise/')
         .then(res => {
             this.setState({
                 exercise: res.data
@@ -43,7 +43,7 @@ export default class ExerciseList extends Component
 
     deleteExercise(id)
     {
-        axios.delete('http://localhost:5000/exercise/'+id)
+        axios.delete('http://localhost:42627/exercise/'+id)
         .then(res => console.log(res.data));
 
         this.setState({
