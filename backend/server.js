@@ -29,10 +29,10 @@ const exerciseRouter = require('./routes/exercise');
 app.use('/user', userRouter);
 app.use('/exercise', exerciseRouter);
 
-app.listen(port, () => {
-    console.log(`Here we go on port: ${port}`);
-});
-
 app.use(cors());
 app.options('*', cors());
 app.use(express.json());
+
+app.listen(port, () => {
+    console.log(`Here we go on port: ${port}`);
+});
