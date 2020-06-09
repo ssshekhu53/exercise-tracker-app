@@ -13,6 +13,10 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 5000;
 
+app.use(cors());
+app.options('*', cors());
+app.use(express.json());
+
 // Connecting to MongoDB database
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true});
@@ -21,17 +25,17 @@ connection.once('open', () => {
     console.log('MongoDB connection established successfully');
 });
 
-app.use(express.static(path.join(__dirname, '../public')));
+// app.use(express.static(path.join(__dirname, '../public')));
+
+app.get('/',function(req,res){
+    res.sendFile(__dirname + '../public'); 
+});
 
 const userRouter = require('./routes/users');
 const exerciseRouter = require('./routes/exercise');
 
 app.use('/user', userRouter);
 app.use('/exercise', exerciseRouter);
-
-app.use(cors());
-app.options('*', cors());
-app.use(express.json());
 
 app.listen(port, () => {
     console.log(`Here we go on port: ${port}`);
