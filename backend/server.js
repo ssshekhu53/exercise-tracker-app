@@ -13,10 +13,6 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(cors());
-app.options('*', cors());
-app.use(express.json());
-
 // Connecting to MongoDB database
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true});
@@ -36,3 +32,7 @@ app.use('/exercise', exerciseRouter);
 app.listen(port, () => {
     console.log(`Here we go on port: ${port}`);
 });
+
+app.use(cors());
+app.options('*', cors());
+app.use(express.json());
