@@ -25,6 +25,8 @@ connection.once('open', () => {
     console.log('MongoDB connection established successfully');
 });
 
+app.use(express.static(path.join(__dirname, 'dist')));
+
 const userRouter = require('./routes/users');
 const exerciseRouter = require('./routes/exercise');
 
